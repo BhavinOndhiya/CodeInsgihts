@@ -9,6 +9,8 @@ import {
   TableHead,
   TableRow,
   Paper,
+  Snackbar,
+  Alert
 } from "@mui/material";
 import { styled } from "@mui/system";
 import { PiUsersBold } from "react-icons/pi";
@@ -27,6 +29,8 @@ const OnGoingProblemList = () => {
   const [EndTime, setEndTime] = useState("");
   const { ContestName } = useParams(); // Destructure ContestName from useParams
   const { state } = React.useContext(userContext);
+  const [snackbarOpen, setSnackbarOpen] = useState(false);
+
 
   useEffect(() => {
     async function fetchDetails() {
@@ -56,7 +60,7 @@ const OnGoingProblemList = () => {
           (event.altKey && !event.ctrlKey)
         ) {
           // Send key press data to the backend
-
+          setSnackbarOpen(true)
           let key = "";
           if (event.altKey && !event.ctrlKey) {
             key = "Alt+Tab";
@@ -86,6 +90,7 @@ const OnGoingProblemList = () => {
       logKeyPress(event.key);
     };
 
+    
     // Add event listeners when the component mounts
     document.addEventListener("keydown", handleKeyDown);
     document.addEventListener("keyup", handleKeyUp);
@@ -97,6 +102,9 @@ const OnGoingProblemList = () => {
       document.removeEventListener("keyup", handleKeyUp);
     };
   }); // Include ContestName in the dependency array
+  const handleSnackbarClose = () => {
+    setSnackbarOpen(false);
+  };
 
   return (
     <>
@@ -176,6 +184,20 @@ const OnGoingProblemList = () => {
             <TimerOnCell EndTime={EndTime} Tag={"Time Left"} />
           </Grid>
         </Grid>
+        <Snackbar
+                open={snackbarOpen}
+                autoHideDuration={6000}
+                onClose={handleSnackbarClose}
+              >
+                <Alert
+                  onClose={handleSnackbarClose}
+                  severity="error"
+                  variant="filled"
+                  sx={{ width: "100%" }}
+                >
+                  You activity will be marked
+                </Alert>
+              </Snackbar>
       </center>
     </>
   );

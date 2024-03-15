@@ -43,11 +43,15 @@ const HeroSection = () => {
             }}
         >
         <div className="hero-section">
+            <span className="box b1"></span>
+            <span className="box b2"></span>
+            
             <Container maxWidth="md">
+
                 <Typography sx={{color:"white"}} variant="h2" align="center" gutterBottom>
                     Welcome to Our Platform
                 </Typography>
-                <Typography variant="h5" align="center" paragraph>
+                <Typography sx={{color:"white"}} variant="h5" align="center" paragraph>
                     Discover upcoming contests, explore features!
                 </Typography>
                 <Grid container spacing={2} justifyContent="center">

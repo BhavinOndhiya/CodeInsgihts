@@ -160,9 +160,9 @@ const Dashboard = () => {
                         <ChartCard
                             title="LeetCode Solved Problems"
                             chartData={[
-                                data.leetcode.hardSolved,
-                                data.leetcode.mediumSolved,
                                 data.leetcode.easySolved,
+                                data.leetcode.mediumSolved,
+                                data.leetcode.hardSolved,
                             ]}
                         />
                     </Grid>

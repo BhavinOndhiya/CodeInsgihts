@@ -5,7 +5,7 @@ import AccessDeniedPage from "../AcessDenied";
 function ProtectedComponent({ children }) {
     const { state } = React.useContext(userContext);
     console.log(state);
-    if (state.usertype === ' ') {
+    if (state.usertype !== 'Admin') {
         return <AccessDeniedPage />;
     } else {
         return children;

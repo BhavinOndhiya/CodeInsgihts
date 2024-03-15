@@ -36,12 +36,10 @@ const SubmissionPage = () => {
 
   useEffect(() => {
     fetchSubmissions(index);
-    const intervalId = setInterval(() => {
-      fetchSubmissions(index);
-    }, 6000);
-    return () => clearInterval(intervalId);
+    
   }, [index]);
-
+  
+    
   async function fetchSubmissions(index) {
     const res = await axios.get(`/Submission/${index}`);
     if (res.data.status === 200) {

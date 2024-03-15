@@ -17,6 +17,7 @@ import {
   Select,
   InputLabel,
   TextField,
+  Alert
 } from "@mui/material";
 import { usehistory, useNavigate, useParams } from "react-router-dom";
 import CopyToClipboard from "react-copy-to-clipboard";
@@ -116,8 +117,9 @@ const ProblemPageOngoing = () => {
           event.key === "F11" ||
           (event.altKey && !event.ctrlKey)
         ) {
+          setSnackbarOpen(true)
           // Send key press data to the backend
-
+          
           let key = "";
           if (event.altKey && !event.ctrlKey) {
             key = "Alt+Tab";
@@ -501,6 +503,20 @@ const ProblemPageOngoing = () => {
                   </IconButton>
                 }
               />
+              <Snackbar
+                open={snackbarOpen}
+                autoHideDuration={6000}
+                onClose={handleSnackbarClose}
+              >
+                <Alert
+                  onClose={handleSnackbarClose}
+                  severity="error"
+                  variant="filled"
+                  sx={{ width: "100%" }}
+                >
+                  You activity will be marked
+                </Alert>
+              </Snackbar>
             </Card>
           </div>
         </div>

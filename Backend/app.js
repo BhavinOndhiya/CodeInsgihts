@@ -258,9 +258,6 @@ app.post("/logs", async (req, res) => {
 
   // Log the request parameters
   logger.info(`user : ${UserName} key pressed : ${key}`);
-
-  // You can add more logging logic here
-  console.log(result);
   res.send(result);
 });
 app.post("/upload", upload.array("file"), (req, res) => {

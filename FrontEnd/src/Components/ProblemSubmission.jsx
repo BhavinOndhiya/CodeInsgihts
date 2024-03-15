@@ -31,9 +31,13 @@ const ProblemSubmissionPage = () => {
     const [show, setshow] = useState(0);
 
     useEffect(() => {
-        fetchSubmissions(index);
-    }, [index]);
-
+        const fetchData = () => {
+            fetchSubmissions(index);
+        };
+        fetchData();
+        const timer = setInterval(fetchData, 5000);
+        return () => clearInterval(timer);
+    }, [index]); // Dependency array with index
     async function fetchSubmissions(index) {
         const res = await axios.get(`/Submissions/${index}/${ContestName}/${ProblemName}`);
         if (res.data.status === 200) {
